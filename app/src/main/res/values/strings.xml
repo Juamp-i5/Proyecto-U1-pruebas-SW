@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">To-Do List</string>
+    <string name="title">To-Do List</string>
+    <string name="edit">Listo</string>
+    <string name="add_task">Añadir</string>
+    <string name="add_button">+</string>
 </resources>
