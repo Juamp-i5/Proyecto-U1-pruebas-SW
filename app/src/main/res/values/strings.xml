@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">To-Do List</string>
     <string name="title">To-Do List</string>
-    <string name="edit">Listo</string>
     <string name="add_task">Añadir</string>
-    <string name="all">Todas</string>
-    <string name="pending">Pendientes</string>
-    <string name="done">Hechas</string>
     <string name="new_task">Nueva Tarea</string>
-    <string name="edit_task">Editar</string>
+    <string name="edit_task">Editar Tarea</string>
     <string name="delete_task">Borrar</string>
     <string name="task_example">Ejemplo de tarea</string>
+    <string name="update_task">Actualizar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="empty_error">El campo no puede estar vacío</string>
+    <string name="hint_task">¿Qué hay que hacer?</string>
 </resources>

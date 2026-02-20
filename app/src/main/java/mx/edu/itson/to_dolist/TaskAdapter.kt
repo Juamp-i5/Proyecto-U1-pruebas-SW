@@ -1,6 +1,5 @@
 package mx.edu.itson.to_dolist
 
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 class TaskAdapter(
-    private val onTaskClick: (Task) -> Unit,
     private val onDeleteClick: (Task) -> Unit,
     private val onEditClick: (Task) -> Unit
 ) : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
@@ -23,7 +21,7 @@ class TaskAdapter(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = getItem(position)
-        holder.bind(task, onTaskClick, onDeleteClick, onEditClick)
+        holder.bind(task, onDeleteClick, onEditClick)
     }
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,21 +31,10 @@ class TaskAdapter(
 
         fun bind(
             task: Task,
-            onTaskClick: (Task) -> Unit,
             onDeleteClick: (Task) -> Unit,
             onEditClick: (Task) -> Unit
         ) {
             tvTaskText.text = task.content
-            
-            if (task.isDone) {
-                tvTaskText.paintFlags = tvTaskText.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                tvTaskText.alpha = 0.5f
-            } else {
-                tvTaskText.paintFlags = tvTaskText.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-                tvTaskText.alpha = 1.0f
-            }
-
-            itemView.setOnClickListener { onTaskClick(task) }
             ivDelete.setOnClickListener { onDeleteClick(task) }
             ivEdit.setOnClickListener { onEditClick(task) }
         }

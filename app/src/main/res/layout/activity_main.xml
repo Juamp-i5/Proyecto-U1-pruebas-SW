@@ -12,67 +12,27 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="92dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="27dp"
         android:text="@string/title"
         android:textColor="@color/deep_rose_soft"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/filterBar"
-        app:layout_constraintStart_toStartOf="@+id/filterBar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/filterBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/rvTasks"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle">
-
-        <Button
-            android:id="@+id/btnAll"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/all"
-            android:textAllCaps="false"
-            android:textColor="@color/rose_grey_filter" />
-
-        <Button
-            android:id="@+id/btnPending"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pending"
-            android:textAllCaps="false"
-            android:textColor="@color/rose_grey_filter" />
-
-        <Button
-            android:id="@+id/btnDone"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/done"
-            android:textAllCaps="false"
-            android:textColor="@color/rose_grey_filter" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTasks"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/background_soft"
         android:clipToPadding="false"
         android:padding="16dp"
-        android:background="@color/background_soft"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterBar"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:listitem="@layout/item_task" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

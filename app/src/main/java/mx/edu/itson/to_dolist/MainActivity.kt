@@ -19,7 +19,6 @@ import com.google.android.material.textfield.TextInputLayout
 class MainActivity : AppCompatActivity() {
     private lateinit var taskManager: TaskManager
     private lateinit var taskAdapter: TaskAdapter
-    private var currentFilter: String = "ALL" // "ALL", "PENDING", "DONE"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         taskManager = TaskManager(this)
 
         setupRecyclerView()
-        setupFilters()
         loadTasks()
 
         findViewById<FloatingActionButton>(R.id.fabAdd).setOnClickListener {
@@ -44,10 +42,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         taskAdapter = TaskAdapter(
-            onTaskClick = { task ->
-                taskManager.updateTask(task.copy(isDone = !task.isDone))
-                loadTasks()
-            },
             onDeleteClick = { task ->
                 taskManager.deleteTask(task)
                 loadTasks()
@@ -62,29 +56,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupFilters() {
-        findViewById<Button>(R.id.btnAll).setOnClickListener {
-            currentFilter = "ALL"
-            loadTasks()
-        }
-        findViewById<Button>(R.id.btnPending).setOnClickListener {
-            currentFilter = "PENDING"
-            loadTasks()
-        }
-        findViewById<Button>(R.id.btnDone).setOnClickListener {
-            currentFilter = "DONE"
-            loadTasks()
-        }
-    }
-
     private fun loadTasks() {
         val tasks = taskManager.getTasks()
-        val filteredTasks = when (currentFilter) {
-            "PENDING" -> tasks.filter { !it.isDone }
-            "DONE" -> tasks.filter { it.isDone }
-            else -> tasks
-        }
-        taskAdapter.submitList(filteredTasks)
+        taskAdapter.submitList(tasks)
     }
 
     private fun showTaskDialog(taskToEdit: Task? = null) {
@@ -95,9 +69,9 @@ class MainActivity : AppCompatActivity() {
         val btnSave = dialogView.findViewById<Button>(R.id.btnSave)
 
         if (taskToEdit != null) {
-            tvTitle.text = "Editar tarea"
+            tvTitle.text = getString(R.string.edit_task)
             etTask.setText(taskToEdit.content)
-            btnSave.text = "Actualizar"
+            btnSave.text = getString(R.string.update_task)
         }
 
         val dialog = MaterialAlertDialogBuilder(this)
@@ -111,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         btnSave.setOnClickListener {
             val taskText = etTask.text.toString().trim()
             if (taskText.isEmpty()) {
-                tilTask.error = "El campo no puede estar vacío"
+                tilTask.error = getString(R.string.empty_error)
             } else {
                 if (taskToEdit == null) {
                     taskManager.addTask(Task(content = taskText))

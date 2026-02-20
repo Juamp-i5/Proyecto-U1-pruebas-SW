@@ -29,7 +29,7 @@
             android:id="@+id/etTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="¿Qué hay que hacer?"
+            android:hint="@string/hint_task"
             android:inputType="textCapSentences"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -46,7 +46,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancelar"
+            android:text="@string/cancel"
             android:textColor="@color/rose_grey_filter" />
 
             <Button
